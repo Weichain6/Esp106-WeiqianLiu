@@ -1,0 +1,16 @@
+air <- read.csv("airpollution.csv", stringsAsFactors = FALSE)
+gdp <- read.csv("gdppercapiandgini.csv", stringsAsFactors = FALSE)
+
+names(air)[grep("Household\\.air\\.pollution.*solid\\.fuels", names(air))] <- "indoor"
+names(air)[grep("Ambient\\.particulate\\.matter\\.pollution", names(air))] <- "pm"
+names(air)[grep("Ambient\\.ozone\\.pollution", names(air))] <- "ozone"
+
+names(gdp)[grep("Output\\.side\\.real\\.GDP\\.per\\.capita", names(gdp))] <- "gdppc"
+names(gdp)[grep("Gini\\.coefficient", names(gdp))] <- "gini"
+names(gdp)[grep("Total\\.population", names(gdp))] <- "pop"
+
+air$outdoor <- air$pm + air$ozone
+
+head(air)
+head(gdp)
+
